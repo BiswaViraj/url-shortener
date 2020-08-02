@@ -19,15 +19,14 @@ app.get('/', (req, res) => {
 })
 
 app.post('/shortUrls', async (req, res) => {
-    let shortURL = '';
+
 
     await urlShortener.create({
         fullUrl: req.body.url
     }, (err, urlShortener) => {
-        shortURL = urlShortener.shortUrl;
 
         res.send({
-            shortURL: `${process.env.APP_URL}/${shortURL}`
+            shortURL: `${process.env.APP_URL}/${urlShortener.shortUrl}`
         })
     })
 })
