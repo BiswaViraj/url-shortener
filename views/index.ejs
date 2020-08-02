@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <header>
+        <h1>URL Shortener</h1>
+    </header>
+    <section>
+        <form onsubmit="handleURLSubmit(event)">
+            <label for='url'>URL</label>
+            <input name="url" id="url" type="text" placeholder="Enter your URL" required>
+
+            <button type="submit">Submit</button>
+        </form>
+    </section>
+    <section>
+        <code id="show-url">
+
+        </code>
+    </section>
+    <script>
+        const handleURLSubmit = async (e) => {
+            e.preventDefault();
+
+            let url = this.url.value;
+
+            const response = await fetch('/shortUrls', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    url: url
+                })
+            })
+
+            const data = await response.json();
+
+            console.log(data);
+
+            await showUrl(data)
+
+        }
+
+        const showUrl = data => {
+            document.getElementById('show-url').innerText = JSON.stringify(data);
+        }
+    </script>
+</body>
+
+</html>
