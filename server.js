@@ -26,7 +26,7 @@ app.post('/shortUrls', async (req, res) => {
     }, (err, urlShortener) => {
 
         res.send({
-            shortURL: `${process.env.APP_URL}/${urlShortener.shortUrl}`
+            shortURL: `${process.env.APP_URL}${urlShortener.shortUrl}`
         })
     })
 })
