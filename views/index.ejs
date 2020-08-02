@@ -4,26 +4,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+    <title>URL Shortener</title>
 </head>
 
-<body>
-    <header>
-        <h1>URL Shortener</h1>
-    </header>
-    <section>
-        <form onsubmit="handleURLSubmit(event)">
-            <label for='url'>URL</label>
-            <input name="url" id="url" type="text" placeholder="Enter your URL" required>
+<body class="bg-purple-100">
+    <div class="container mx-auto font-mono">
+        <header>
+            <h1
+                class="text-center p-2 text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-semibold text-teal-700 underline cursor-pointer">
+                URL Shortener</h1>
+        </header>
+        <section class="p-5">
+            <form onsubmit="handleURLSubmit(event)">
+                <label for='url' class="w-2/12 p-2">Enter URL:</label>
+                <input name="url" id="url" type="text" placeholder="Enter your URL" required
+                    class="p-2 w-10/12 m-2 placeholder-teal-600 shadow-md focus:outline-none focus:shadow-outline">
 
-            <button type="submit">Submit</button>
-        </form>
-    </section>
-    <section>
-        <code id="show-url">
+                <div class="flex justify-center p-5">
+                    <button id="submit-btn" type="submit"
+                        class="bg-purple-300 rounded p-2 shadow-md focus:outline-none focus:shadow-outline">Submit</button>
+                </div>
+            </form>
+        </section>
+        <section class="p-5">
+            <pre id="show-url" class="hidden p-2">
 
-        </code>
-    </section>
+        </pre>
+        </section>
+    </div>
     <script>
         const handleURLSubmit = async (e) => {
             e.preventDefault();
@@ -50,7 +59,11 @@
         }
 
         const showUrl = data => {
-            document.getElementById('show-url').innerText = JSON.stringify(data);
+            let showUrlElem = document.getElementById('show-url');
+            const { shortURL } = data
+            const text = `your custom url is:- ${shortURL}`
+            showUrlElem.innerText = text
+            showUrlElem.classList.remove('hidden')
         }
     </script>
 </body>
