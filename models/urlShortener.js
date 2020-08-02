@@ -9,7 +9,7 @@ const urlShortenerSchema = new mongoose.Schema({
     shortUrl: {
         type: String,
         required: true,
-        default: nanoid(5).toLowerCase(),
+        default: () => nanoid(5).toLowerCase(),
         unique: true
     }
 })
