@@ -5,7 +5,7 @@ const urlShortener = require('./models/urlShortener')
 require("dotenv").config();
 const app = express()
 
-mongoose.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.tkq3m.mongodb.net/${process.env.DB_NAME}>?retryWrites=true&w=majority`, {
+mongoose.connect(process.env.MONGODB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true
