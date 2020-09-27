@@ -43,7 +43,7 @@ app.get("/:shortURL", async (req, res) => {
   if (!url.includes("http://") && !url.includes("https://")) {
     url = `http://${url}`;
   }
-console.log(url);
+
   res.status(301).redirect(url);
 });
 
