@@ -40,11 +40,11 @@ app.get("/:shortURL", async (req, res) => {
     return res.sendStatus(404);
   }
   let url = shortUrl.fullUrl;
-  if (!url.includes("http://") || !url.includes("https://")) {
+  if (!url.includes("http://") && !url.includes("https://")) {
     url = `http://${url}`;
   }
-
-  res.redirect(url);
+console.log(url);
+  res.status(301).redirect(url);
 });
 
 app.listen(process.env.PORT || 5000);
